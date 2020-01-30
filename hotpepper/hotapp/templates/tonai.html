@@ -1,0 +1,13 @@
+{%extends "base.html"%}
+
+
+{%block content%}
+
+<h1>東京の area code</h1>
+<br>
+{%for item in api.garea_middle%}
+	{%if item.pref.pref_code == "PREF13" %}
+		<span style="font-weight:bold; color:blue;">{{item.areaname_m}}</span>&nbsp:&nbsp{{item.areacode_m}}<br>
+	{%endif%}
+{%endfor%}}
+{%endblock%}

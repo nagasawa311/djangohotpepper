@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>グルメサイト</title>
+	<style type="text/css">
+		a{
+			text-decoration:none;
+			border:thick solid black;
+			border-radius:9px;
+			padding:9px;
+			background:#BBFFFF;
+			color:black;
+			font-weight:bold;
+		}
+		a:hover{
+			background:#77FFFF;
+		}
+	</style>
+</head>
+<body style="user-select:none;">
+<h1 style="text-align:center; margin-top:100px;">本当に<span style="color:red; font-weight:bold;">ログアウト</span>しますか？</h1>
+<h1 style="text-align:center; font-size:130px; line-height:100px; height:100px;">&#x2B07;</h1>
+<div style="text-align:center; font-size:30px;">
+	<a href="{%url 'loggingout'%}" role="button" >ログアウトする</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<a href="{%url 'home'%}" role="button" >やっぱりログアウトしない</a>
+</div>
+
+</body>
+</html>

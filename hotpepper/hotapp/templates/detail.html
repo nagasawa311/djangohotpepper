@@ -1,0 +1,59 @@
+{%extends "base.html"%}
+
+{%block content%}
+
+<table class="table  table-bordered" style="text-align:center; margin:auto; border: 2px solid; ">
+  <tbody>
+    <tr style="border: 2px solid;">
+      <th scope="row" style="border: 2px solid;" width="130px">店名</th>
+      <td>{{api.rest.0.name}}</td>
+    </tr>
+    <tr style="border: 2px solid;">
+      <th scope="row" style="border: 2px solid;" width="130px">ジャンル</th>
+      <td>
+      {%for item in api.rest.0.code.category_name_s%}
+      {{item}}&nbsp;&nbsp;
+      {%endfor%}		
+	  </td>
+    </tr>
+    <tr style="border: 2px solid;">
+      <th scope="row" style="border: 2px solid;" width="130px">平均予算</th>
+      <td>{{api.rest.0.budget}}円</td>
+    </tr>
+    <tr style="border: 2px solid;">
+      <th scope="row" style="border: 2px solid;" width="130px">アクセス</th>
+      <td>{{api.rest.0.access.station}}&nbsp;から徒歩{{api.rest.0.access.walk}}分</td>
+    </tr>
+    <tr style="border: 2px solid;">
+      <th scope="row" style="border: 2px solid;" width="130px">開店時間</th>
+      <td>{{api.rest.0.opentime}}</td>
+    </tr>
+    <tr style="border: 2px solid;">
+      <th scope="row" style="border: 2px solid;" width="130px">ホームページ</th>
+      <td><a href="{{api.rest.0.url}}">{{api.rest.0.url}}</a></td>
+    </tr>
+  </tbody>
+</table>
+
+<div style="display:flex; justify-content: center; padding-top:10px;">
+  {%if area_code%}
+    <form method="POST" action="{%url 'houdai'%}">{%csrf_token%}
+      <input type="submit" value="一覧に戻る">
+      <input type="hidden" name="area_code" value="{{area_code}}">
+    </form>&nbsp;&nbsp;
+    <form class="form-inline my-2 my-lg-0" action="{%url 'list'%}" method="POST">{%csrf_token%}
+      <input type="submit" value="リストに追加">
+      <input type="hidden" name="item_id" value="{{api.rest.0.id}}">
+    </form>
+  {%else%}
+    <form method="GET" action="{%url 'list'%}">{%csrf_token%}
+      <input type="submit" value="リストに戻る">
+    </form>&nbsp;&nbsp;
+    <form method="POST" action="{% url 'delete' api.rest.0.id%}">{%csrf_token%}
+      <input type="submit" value="削除する">
+    </form>
+  {%endif%}
+  
+</div>
+
+{%endblock%}

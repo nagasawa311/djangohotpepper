@@ -1,0 +1,26 @@
+{%extends "base.html"%}
+
+
+{%block content%}
+
+{%if api%}
+	
+    <ul>
+    	{%for item in api.rest%}
+    	<li style="font-weight:bold;">
+    		<form method="POST" action="{%url 'detail' item.id%}">{%csrf_token%}
+                <p>{{item.name}}&nbsp;---&nbsp;<input type="submit" value="詳細ページへ" style="font-weight:bold; font-size:12px;"></p>
+    			<input type="hidden" name="area_code" value="{{area_code}}">
+    		</form>
+    	</li>
+		{%endfor%}
+    </ul>
+	
+{%else%}
+	<h1 style="display:inline-block;">Search for 食べ放題!</h1>
+    <p style="display:inline-block; float:right; margin-right:40px; color:red; font-weight:bold;"> ここに area code を入れよう&nbsp;<span style="font-size:30px; ">&#9757;</span><p>
+{%endif%}
+
+
+
+{%endblock%}

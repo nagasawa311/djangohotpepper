@@ -1,0 +1,16 @@
+{%extends "base.html"%}
+
+
+{%block content%}
+<h1>行きたい店リスト</h1>
+<br>
+<ul>
+	{%for item in output%}
+	<li style="font-weight:bold;">
+		<a href="{%url 'detail' item.rest.0.id%}">{{item.rest.0.name}}</a>
+	</li>	
+	<br>	
+	{%endfor%}
+</ul>
+
+{%endblock%}
